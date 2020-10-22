@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        小米商城 - 小米10 Pro、Redmi K30、小米MIX Alpha，小米电视官方网站
+    </title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./font-awesome-4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/base.css">
+    <!-- 设置网站的图标（在网站的标题栏和收藏栏）
+              -网站图标一般放在网站根目录下，直接在网站导航栏输入/favicon.ico -->
+    <link rel="icon" href="./favicon.ico">
+    <script src="../../javascript/tools.js"></script>
+    <script>
+        window.onload = function () {
+            var imglist = document.getElementById("imglist");
+            var lis = imglist.children;
+            imglist.style.width = 1226 * lis.length + "px";
+            var index = 0;
+            var pointer = document.getElementsByClassName("pointer")[0];
+            var div = pointer.children;
+            div[index].style.backgroundColor = "white";
+            for (var i = 0; i < div.length; i++) {
+                div[i].num = i;
+                div[i].onclick = function () {
+                    clearInterval(timer);
+                    index = this.num;
+                    // imglist.style.left = -1226 * index + "px";
+                    setDiv();
+                    move(imglist, "left", -1226 * index, 100, function () {
+                        autoChang();
+                    });
+                };
+            };
+            autoChang();
+            function setDiv() {
+                if (index >= div.length) {
+                    index = 0;
+                    imglist.style.left = 0;
+                };
+                if (index < 0) {
+                    index = div.length - 1;
+                    imglist.style.left = -1226 * (imglist.children.length - 2) + "px";
+                };
+                for (let i = 0; i < div.length; i++) {
+                    div[i].style.backgroundColor = "";
+                };
+                div[index].style.backgroundColor = "white";
+            };
+            var timer;
+            function autoChang() {
+                timer = setInterval(function () {
+                    index++;
+                    index = index % lis.length;
+                    move(imglist, "left", -1226 * index, 100, function () {
+                        setDiv();
+                    });
+                }, 3000)
+            };
+            var prev = document.getElementById("prev");
+            var next = document.getElementById("next");
+            prev.onclick = function () {
+                index--;
+                console.log(index)
+                clearInterval(timer);
+                // imglist.style.left = -1226*index + 1226 +"px";
+                setDiv();
+                // if(index>=0){
+                move(imglist, "left", -1226 * index, 100, function () {
+                    autoChang();
+                });
+                // }else{
+                //     imglist.style.left = -1226*(imglist.children.length-2)+"px";
+                //     index=imglist.children.length-2;
+                // }
+
+            };
+            next.onclick = function () {
+                console.log(index)
+                index++;
+                clearInterval(timer);
+                setDiv();
+                move(imglist, "left", -1226 * index, 100, function () {
+                    autoChang();
+                });
+            };
+        };
+    </script>
+</head>
+
+<body>
+    <div class="top-bar-wrapper">
+        <div class="top-bar w">
+            <ul class="service">
+                <li><a href="javascript:;">小米商城</a></li>
+                <li class="line">|</li>
+                <li><a href="javascript:;">MIUI</a></li>
+                <li class="line">|</li>
+                <li><a href="javascript:;">loT</a></li>
+                <li class="line">|</li>
+                <li><a href="javascript:;">云服务</a></li>
+                <li class="line">|</li>
+                <li><a href="javascript:;">金融</a></li>
+                <li class="line">|</li>
+                <li><a href="javascript:;">有品</a></li>
+                <li class="line">|</li>
+                <li><a href="javascript:;">小爱开放平台</a></li>
+                <li class="line">|</li>
+                <li><a href="javascript:;">企业团购</a></li>
+                <li class="line">|</li>
+                <li><a href="javascript:;">资质证照</a></li>
+                <li class="line">|</li>
+                <li><a href="javascript:;">协议规则</a></li>
+                <li class="line">|</li>
+                <li class='li-wrapper'><a class="app-wrapper" href="javascript:;">下载app
+                        <div class="app">
+                            <img class="qrcode" src="https://i1.mifile.cn/f/i/17/appdownload/download.png?1">
+                            <span>小米商城APP</span>
+                        </div>
+                    </a></li>
+                <li class="line">|</li>
+                <li><a href="javascript:;">Select Location</a></li>
+            </ul>
+            <ul class="shop-cart">
+                <ul class="user">
+                    <li><a href="javascript:;">登录</a></li>
+                    <li class="line">|</li>
+                    <li><a href="javascript:;">注册</a></li>
+                    <li class="line">|</li>
+                    <li><a href="javascript:;">消息通知</a></li>
+                    <li class="line">|</li>
+                </ul>
+                <li><a class="cart" href="javascript:;">
+                        <i class="fa fa-shopping-cart"></i>
+                        购物车（0）
+                        <div class="msc">
+                            购物车还没有商品，赶紧选购吧！
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="head-wrapper">
+        <div class="head w">
+            <h1 class="logo" title="小米官网">
+                小米官网
+                <a class="mi" href="/"></a>
+                <a class="home" href="/"></a>
+            </h1>
+            <div class="nav-wrapper">
+                <ul class='nav'>
+                    <li class="li-wrapper">
+                        <a class="li-a" href="#">全部商品分类</a>
+                        <ul class="left-menu">
+                            <li><a class="left-a" href="#">手机 电话卡<i class="fa fa-angle-right"></i></a>
+                                <div class="left-menu-children">
+                                    <ul class="children-left">
+                                        <li><a href="#"><img class="img1" src=""><span class="span1"></span></a></li>
+                                        <li><a href="#"><img class="img1" src=""><span class="span1"></span></a></li>
+                                        <li><a href="#"><img class="img1" src=""><span class="span1"></span></a></li>
+                                        <li><a href="#"><img class="img1" src=""><span class="span1"></span></a></li>
+                                        <li><a href="#"><img class="img1" src=""><span class="span1"></span></a></li>
+                                        <li><a href="#"><img class="img1" src=""><span class="span1"></span></a></li>
+                                    </ul>
+                                    <ul class="children-left">
+                                        <li><a href="#"><img class="img1" src=""><span class="span1"></span></a></li>
+                                        <li><a href="#"><img class="img1" src=""><span class="span1"></span></a></li>
+                                        <li><a href="#"><img class="img1" src=""><span class="span1"></span></a></li>
+                                        <li><a href="#"><img class="img1" src=""><span class="span1"></span></a></li>
+                                        <li><a href="#"><img class="img1" src=""><span class="span1"></span></a></li>
+                                        <li><a href="#"><img class="img1" src=""><span class="span1"></span></a></li>
+                                    </ul>
+                                    <ul class="children-left">
+                                        <li><a href="#"><img class="img1" src=""><span class="span1"></span></a></li>
+                                        <li><a href="#"><img class="img1" src=""><span class="span1"></span></a></li>
+                                        <li><a href="#"><img class="img1" src=""><span class="span1"></span></a></li>
+                                        <li><a href="#"><img class="img1" src=""><span class="span1"></span></a></li>
+                                        <li><a href="#"><img class="img1" src=""><span class="span1"></span></a></li>
+                                        <li><a href="#"><img class="img1" src=""><span class="span1"></span></a></li>
+                                    </ul>
+                                    <ul class="children-left">
+                                        <li><a href="#"><img class="img1" src=""><span class="span1"></span></a></li>
+                                        <li><a href="#"><img class="img1" src=""><span class="span1"></span></a></li>
+                                        <li><a href="#"><img class="img1" src=""><span class="span1"></span></a></li>
+                                        <li><a href="#"><img class="img1" src=""><span class="span1"></span></a></li>
+                                        <li><a href="#"><img class="img1" src=""><span class="span1"></span></a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li><a class="left-a" href="#">电视 盒子<i class="fa fa-angle-right"></i></a>
+                                <div class="left-menu-children">
+                                    <ul class="children-left">
+                                        <li><a href="#"><img class="img2" src=""><span class="span2"></span></a></li>
+                                        <li><a href="#"><img class="img2" src=""><span class="span2"></span></a></li>
+                                        <li><a href="#"><img class="img2" src=""><span class="span2"></span></a></li>
+                                        <li><a href="#"><img class="img2" src=""><span class="span2"></span></a></li>
+                                        <li><a href="#"><img class="img2" src=""><span class="span2"></span></a></li>
+                                        <li><a href="#"><img class="img2" src=""><span class="span2"></span></a></li>
+                                    </ul>
+                                    <ul class="children-left">
+                                        <li><a href="#"><img class="img2" src=""><span class="span2"></span></a></li>
+                                        <li><a href="#"><img class="img2" src=""><span class="span2"></span></a></li>
+                                        <li><a href="#"><img class="img2" src=""><span class="span2"></span></a></li>
+                                        <li><a href="#"><img class="img2" src=""><span class="span2"></span></a></li>
+                                        <li><a href="#"><img class="img2" src=""><span class="span2"></span></a></li>
+                                        <li><a href="#"><img class="img2" src=""><span class="span2"></span></a></li>
+                                    </ul>
+                                    <ul class="children-left">
+                                        <li><a href="#"><img class="img2" src=""><span class="span2"></span></a></li>
+                                        <li><a href="#"><img class="img2" src=""><span class="span2"></span></a></li>
+                                        <li><a href="#"><img class="img2" src=""><span class="span2"></span></a></li>
+                                        <li><a href="#"><img class="img2" src=""><span class="span2"></span></a></li>
+                                        <li><a href="#"><img class="img2" src=""><span class="span2"></span></a></li>
+                                        <li><a href="#"><img class="img2" src=""><span class="span2"></span></a></li>
+                                    </ul>
+                                    <ul class="children-left">
+                                        <li><a href="#"><img class="img2" src=""><span class="span2"></span></a></li>
+                                        <li><a href="#"><img class="img2" src=""><span class="span2"></span></a></li>
+                                        <li><a href="#"><img class="img2" src=""><span class="span2"></span></a></li>
+                                        <li><a href="#"><img class="img2" src=""><span class="span2"></span></a></li>
+                                        <li><a href="#"><img class="img2" src=""><span class="span2"></span></a></li>
+                                        <li><a href="#"><img class="img2" src=""><span class="span2"></span></a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li><a class="left-a" href="#">笔记本 显示器 平板<i class="fa fa-angle-right"></i></a>
+                                <div class="left-menu-children">
+                                    <ul class="children-left">
+                                        <li><a href="#"><img class="img3" src=""><span class="span3"></span></a></li>
+                                        <li><a href="#"><img class="img3" src=""><span class="span3"></span></a></li>
+                                        <li><a href="#"><img class="img3" src=""><span class="span3"></span></a></li>
+                                        <li><a href="#"><img class="img3" src=""><span class="span3"></span></a></li>
+                                        <li><a href="#"><img class="img3" src=""><span class="span3"></span></a></li>
+                                        <li><a href="#"><img class="img3" src=""><span class="span3"></span></a></li>
+                                    </ul>
+                                    <ul class="children-left">
+                                        <li><a href="#"><img class="img3" src=""><span class="span3"></span></a></li>
+                                        <li><a href="#"><img class="img3" src=""><span class="span3"></span></a></li>
+                                        <li><a href="#"><img class="img3" src=""><span class="span3"></span></a></li>
+                                        <li><a href="#"><img class="img3" src=""><span class="span3"></span></a></li>
+                                        <li><a href="#"><img class="img3" src=""><span class="span3"></span></a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li><a class="left-a" href="#">家电 插线板<i class="fa fa-angle-right"></i></a>
+                                <div class="left-menu-children">
+                                    <ul class="children-left">
+                                        <li><a href="#"><img class="img4" src=""><span class="span4"></span></a></li>
+                                        <li><a href="#"><img class="img4" src=""><span class="span4"></span></a></li>
+                                        <li><a href="#"><img class="img4" src=""><span class="span4"></span></a></li>
+                                        <li><a href="#"><img class="img4" src=""><span class="span4"></span></a></li>
+                                        <li><a href="#"><img class="img4" src=""><span class="span4"></span></a></li>
+                                        <li><a href="#"><img class="img4" src=""><span class="span4"></span></a></li>
+                                    </ul>
+                                    <ul class="children-left">
+                                        <li><a href="#"><img class="img4" src=""><span class="span4"></span></a></li>
+                                        <li><a href="#"><img class="img4" src=""><span class="span4"></span></a></li>
+                                        <li><a href="#"><img class="img4" src=""><span class="span4"></span></a></li>
+                                        <li><a href="#"><img class="img4" src=""><span class="span4"></span></a></li>
+                                        <li><a href="#"><img class="img4" src=""><span class="span4"></span></a></li>
+                                        <li><a href="#"><img class="img4" src=""><span class="span4"></span></a></li>
+                                    </ul>
+                                    <ul class="children-left">
+                                        <li><a href="#"><img class="img4" src=""><span class="span4"></span></a></li>
+                                        <li><a href="#"><img class="img4" src=""><span class="span4"></span></a></li>
+                                        <li><a href="#"><img class="img4" src=""><span class="span4"></span></a></li>
+                                        <li><a href="#"><img class="img4" src=""><span class="span4"></span></a></li>
+                                        <li><a href="#"><img class="img4" src=""><span class="span4"></span></a></li>
+                                        <li><a href="#"><img class="img4" src=""><span class="span4"></span></a></li>
+                                    </ul>
+                                    <ul class="children-left">
+                                        <li><a href="#"><img class="img4" src=""><span class="span4"></span></a></li>
+                                        <li><a href="#"><img class="img4" src=""><span class="span4"></span></a></li>
+                                        <li><a href="#"><img class="img4" src=""><span class="span4"></span></a></li>
+                                        <li><a href="#"><img class="img4" src=""><span class="span4"></span></a></li>
+                                        <li><a href="#"><img class="img4" src=""><span class="span4"></span></a></li>
+                                        <li><a href="#"><img class="img4" src=""><span class="span4"></span></a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li><a class="left-a" href="#">出行 穿戴<i class="fa fa-angle-right"></i></a>
+                                <div class="left-menu-children">
+                                    <ul class="children-left">
+                                        <li><a href="#"><img class="img5" src=""><span class="span5"></span></a></li>
+                                        <li><a href="#"><img class="img5" src=""><span class="span5"></span></a></li>
+                                        <li><a href="#"><img class="img5" src=""><span class="span5"></span></a></li>
+                                        <li><a href="#"><img class="img5" src=""><span class="span5"></span></a></li>
+                                        <li><a href="#"><img class="img5" src=""><span class="span5"></span></a></li>
+                                        <li><a href="#"><img class="img5" src=""><span class="span5"></span></a></li>
+                                    </ul>
+                                    <ul class="children-left">
+                                        <li><a href="#"><img class="img5" src=""><span class="span5"></span></a></li>
+                                        <li><a href="#"><img class="img5" src=""><span class="span5"></span></a></li>
+                                        <li><a href="#"><img class="img5" src=""><span class="span5"></span></a></li>
+                                        <li><a href="#"><img class="img5" src=""><span class="span5"></span></a></li>
+                                        <li><a href="#"><img class="img5" src=""><span class="span5"></span></a></li>
+                                        <li><a href="#"><img class="img5" src=""><span class="span5"></span></a></li>
+                                    </ul>
+                                    <ul class="children-left">
+                                        <li><a href="#"><img class="img5" src=""><span class="span5"></span></a></li>
+                                        <li><a href="#"><img class="img5" src=""><span class="span5"></span></a></li>
+                                        <li><a href="#"><img class="img5" src=""><span class="span5"></span></a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li><a class="left-a" href="#">智能 路由器<i class="fa fa-angle-right"></i></a>
+                                <div class="left-menu-children">
+                                    <ul class="children-left">
+                                        <li><a href="#"><img class="img6" src=""><span class="span6"></span></a></li>
+                                        <li><a href="#"><img class="img6" src=""><span class="span6"></span></a></li>
+                                        <li><a href="#"><img class="img6" src=""><span class="span6"></span></a></li>
+                                        <li><a href="#"><img class="img6" src=""><span class="span6"></span></a></li>
+                                        <li><a href="#"><img class="img6" src=""><span class="span6"></span></a></li>
+                                        <li><a href="#"><img class="img6" src=""><span class="span6"></span></a></li>
+                                    </ul>
+                                    <ul class="children-left">
+                                        <li><a href="#"><img class="img6" src=""><span class="span6"></span></a></li>
+                                        <li><a href="#"><img class="img6" src=""><span class="span6"></span></a></li>
+                                        <li><a href="#"><img class="img6" src=""><span class="span6"></span></a></li>
+                                        <li><a href="#"><img class="img6" src=""><span class="span6"></span></a></li>
+                                        <li><a href="#"><img class="img6" src=""><span class="span6"></span></a></li>
+                                        <li><a href="#"><img class="img6" src=""><span class="span6"></span></a></li>
+                                    </ul>
+                                    <ul class="children-left">
+                                        <li><a href="#"><img class="img6" src=""><span class="span6"></span></a></li>
+                                        <li><a href="#"><img class="img6" src=""><span class="span6"></span></a></li>
+                                        <li><a href="#"><img class="img6" src=""><span class="span6"></span></a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li><a class="left-a" href="#">电源 配件<i class="fa fa-angle-right"></i></a>
+                                <div class="left-menu-children">
+                                    <ul class="children-left">
+                                        <li><a href="#"><img class="img7" src=""><span class="span7"></span></a></li>
+                                        <li><a href="#"><img class="img7" src=""><span class="span7"></span></a></li>
+                                        <li><a href="#"><img class="img7" src=""><span class="span7"></span></a></li>
+                                        <li><a href="#"><img class="img7" src=""><span class="span7"></span></a></li>
+                                        <li><a href="#"><img class="img7" src=""><span class="span7"></span></a></li>
+                                        <li><a href="#"><img class="img7" src=""><span class="span7"></span></a></li>
+                                    </ul>
+                                    <ul class="children-left">
+                                        <li><a href="#"><img class="img7" src=""><span class="span7"></span></a></li>
+                                        <li><a href="#"><img class="img7" src=""><span class="span7"></span></a></li>
+                                        <li><a href="#"><img class="img7" src=""><span class="span7"></span></a></li>
+                                        <li><a href="#"><img class="img7" src=""><span class="span7"></span></a></li>
+                                        <li><a href="#"><img class="img7" src=""><span class="span7"></span></a></li>
+                                        <li><a href="#"><img class="img7" src=""><span class="span7"></span></a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li><a class="left-a" href="#">健康 儿童<i class="fa fa-angle-right"></i></a>
+                                <div class="left-menu-children">
+                                    <ul class="children-left">
+                                        <li><a href="#"><img class="img8" src=""><span class="span8"></span></a></li>
+                                        <li><a href="#"><img class="img8" src=""><span class="span8"></span></a></li>
+                                        <li><a href="#"><img class="img8" src=""><span class="span8"></span></a></li>
+                                        <li><a href="#"><img class="img8" src=""><span class="span8"></span></a></li>
+                                        <li><a href="#"><img class="img8" src=""><span class="span8"></span></a></li>
+                                        <li><a href="#"><img class="img8" src=""><span class="span8"></span></a></li>
+                                    </ul>
+                                    <ul class="children-left">
+                                        <li><a href="#"><img class="img8" src=""><span class="span8"></span></a></li>
+                                        <li><a href="#"><img class="img8" src=""><span class="span8"></span></a></li>
+                                        <li><a href="#"><img class="img8" src=""><span class="span8"></span></a></li>
+                                        <li><a href="#"><img class="img8" src=""><span class="span8"></span></a></li>
+                                        <li><a href="#"><img class="img8" src=""><span class="span8"></span></a></li>
+                                        <li><a href="#"><img class="img8" src=""><span class="span8"></span></a></li>
+                                    </ul>
+                                    <ul class="children-left">
+                                        <li><a href="#"><img class="img8" src=""><span class="span8"></span></a></li>
+                                        <li><a href="#"><img class="img8" src=""><span class="span8"></span></a></li>
+                                        <li><a href="#"><img class="img8" src=""><span class="span8"></span></a></li>
+                                        <li><a href="#"><img class="img8" src=""><span class="span8"></span></a></li>
+                                        <li><a href="#"><img class="img8" src=""><span class="span8"></span></a></li>
+                                        <li><a href="#"><img class="img8" src=""><span class="span8"></span></a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li><a class="left-a" href="#">耳机 音箱<i class="fa fa-angle-right"></i></a>
+                                <div class="left-menu-children">
+                                    <ul class="children-left">
+                                        <li><a href="#"><img class="img9" src=""><span class="span9"></span></a></li>
+                                        <li><a href="#"><img class="img9" src=""><span class="span9"></span></a></li>
+                                        <li><a href="#"><img class="img9" src=""><span class="span9"></span></a></li>
+                                        <li><a href="#"><img class="img9" src=""><span class="span9"></span></a></li>
+                                        <li><a href="#"><img class="img9" src=""><span class="span9"></span></a></li>
+                                        <li><a href="#"><img class="img9" src=""><span class="span9"></span></a></li>
+                                    </ul>
+                                    <ul class="children-left">
+                                        <li><a href="#"><img class="img9" src=""><span class="span9"></span></a></li>
+                                        <li><a href="#"><img class="img9" src=""><span class="span9"></span></a></li>
+                                        <li><a href="#"><img class="img9" src=""><span class="span9"></span></a></li>
+                                        <li><a href="#"><img class="img9" src=""><span class="span9"></span></a></li>
+                                        <li><a href="#"><img class="img9" src=""><span class="span9"></span></a></li>
+                                        <li><a href="#"><img class="img9" src=""><span class="span9"></span></a></li>
+                                    </ul>
+                                    <ul class="children-left">
+                                        <li><a href="#"><img class="img9" src=""><span class="span9"></span></a></li>
+                                        <li><a href="#"><img class="img9" src=""><span class="span9"></span></a></li>
+                                        <li><a href="#"><img class="img9" src=""><span class="span9"></span></a></li>
+                                        <li><a href="#"><img class="img9" src=""><span class="span9"></span></a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li><a class="left-a" href="#">生活 箱包<i class="fa fa-angle-right"></i></a>
+                                <div class="left-menu-children">
+                                    <ul class="children-left">
+                                        <li><a href="#"><img class="img10" src=""><span class="span10"></span></a></li>
+                                        <li><a href="#"><img class="img10" src=""><span class="span10"></span></a></li>
+                                        <li><a href="#"><img class="img10" src=""><span class="span10"></span></a></li>
+                                        <li><a href="#"><img class="img10" src=""><span class="span10"></span></a></li>
+                                        <li><a href="#"><img class="img10" src=""><span class="span10"></span></a></li>
+                                        <li><a href="#"><img class="img10" src=""><span class="span10"></span></a></li>
+                                    </ul>
+                                    <ul class="children-left">
+                                        <li><a href="#"><img class="img10" src=""><span class="span10"></span></a></li>
+                                        <li><a href="#"><img class="img10" src=""><span class="span10"></span></a></li>
+                                        <li><a href="#"><img class="img10" src=""><span class="span10"></span></a></li>
+                                        <li><a href="#"><img class="img10" src=""><span class="span10"></span></a></li>
+                                        <li><a href="#"><img class="img10" src=""><span class="span10"></span></a></li>
+                                        <li><a href="#"><img class="img10" src=""><span class="span10"></span></a></li>
+                                    </ul>
+                                    <ul class="children-left">
+                                        <li><a href="#"><img class="img10" src=""><span class="span10"></span></a></li>
+                                        <li><a href="#"><img class="img10" src=""><span class="span10"></span></a></li>
+                                        <li><a href="#"><img class="img10" src=""><span class="span10"></span></a></li>
+                                        <li><a href="#"><img class="img10" src=""><span class="span10"></span></a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="all l1"><a href="#">小米手机</a></li>
+                    <li class="all l1"><a href="#">Redmi手机</a></li>
+                    <li class="all l1"><a href="#">电视</a></li>
+                    <li class="all l1"><a href="#">笔记本</a></li>
+                    <li class="all l1"><a href="#">家电</a></li>
+                    <li class="all l1"><a href="#">路由器</a></li>
+                    <li class="all l1"><a href="#">智能硬件</a></li>
+                    <li class="l1"><a href="#">服务</a></li>
+                    <li class="l1"><a href="#">社区</a></li>
+                    <div class='all-goods'>
+                        <ul class="goods">
+                            <li><a href="#"><img src="./img/1.png" alt="">
+                                    <h1>小米10 青春版 5G</h1>
+                                    <p>2099元起</p>
+                                </a></li>
+                            <li><a href="#"><img src="./img/2.png" alt="">
+                                    <h1>小米10 pro</h1>
+                                    <p>4999元起</p>
+                                </a></li>
+                            <li><a href="#"><img src="./img/3.png" alt="">
+                                    <h1>小米10</h1>
+                                    <p>3999元起</p>
+                                </a></li>
+                            <li><a href="#"><img src="./img/4.png" alt="">
+                                    <h1>小米CC9</h1>
+                                    <p>1499元起</p>
+                                </a></li>
+                            <li><a href="#"><img src="./img/5.png" alt="">
+                                    <h1>小米CC9e</h1>
+                                    <p>1299元起</p>
+                                </a></li>
+                            <li><a href="#"><img src="./img/6.png" alt="">
+                                    <h1>小米CC9 美图定制版</h1>
+                                    <p>1999元起</p>
+                                </a></li>
+                        </ul>
+                    </div>
+                </ul>
+            </div>
+            <div class="search-wrapper">
+                <from class="search" action="#">
+                    <input class="search-inp" type="text">
+                    <button class="search-but">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </from>
+            </div>
+
+        </div>
+    </div>
+    <div></div>
+    <div class="banner-wrapper w" id="outer">
+        <ul class="swiper-wrapper img-list" id="imglist">
+            <li class="swiper-slide"><a href="#"><img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/7ac9b415445e589c80b3ebbf8d97ffbf.jpg?w=1226&h=460"></a>
+            </li>
+            <li class="swiper-slide"><a href="#"><img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/5c570f53db02ad7082b2017097080179.jpg?thumb=1&w=1226&h=460&f=webp&q=90"></a>
+            </li>
+            <li class="swiper-slide"><a href="#"><img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/e52c3e98602b90f198ec316dce253cba.jpg?thumb=1&w=1226&h=460&f=webp&q=90"></a>
+            </li>
+            <li class="swiper-slide"><a href="#"><img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/7e882fcbdcafc352dde03c741836399b.jpg?thumb=1&w=1226&h=460&f=webp&q=90"></a>
+            </li>
+            <li class="swiper-slide"><a href="#"><img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/7ac9b415445e589c80b3ebbf8d97ffbf.jpg?w=1226&h=460"></a>
+            </li>
+        </ul>
+        <div class="pointer">
+            <div class="pagination1" href="#"></div>
+            <div class="pagination1" href="#"></div>
+            <div class="pagination1" href="#"></div>
+            <div class="pagination1" href="#"></div>
+        </div>
+        <div class="prev-next">
+            <a class="prev" id="prev" href="#"></a>
+            <a class="next" id="next" href="#"></a>
+        </div>
+    </div>
+    <div class="back-top">
+        <a class="mob" href="#"><i class="fa fa-mobile"></i></a>
+        <a href="#"><i class="fa fa-user-o"></i></a>
+        <a href="#"><i class="fa fa-wrench"></i></a>
+        <a href="#"><i class="fa fa-phone"></i></a>
+        <a href="#"><i class="fa fa-shopping-cart"></i></a>
+    </div>
+    <div class="shortcut-wrapper w">
+        <ul class="shortcut">
+            <li><a href="#"><i class="fa fa-clock-o"></i>小米秒杀</a></li>
+            <li><a href="#"><i class="fa fa-building-o"></i>企业团购</a></li>
+            <li><a href="#"><i class="fa fa-code"></i>F码通道</a></li>
+            <li><a href="#"><i class="fa fa-file"></i>米粉卡</a></li>
+            <li><a href="#"><i class="fa fa-refresh"></i>以旧换新</a></li>
+            <li><a href="#"><i class="fa fa-rmb (alias)"></i>话费充值</a></li>
+        </ul>
+        <ul class="img-list2">
+            <li><a href="#"><img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/35a2239e10e392af73b6b7a737a039d6.jpg?w=632&h=340"></a>
+            </li>
+            <li><a href="#"><img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/fbff319c7dd00e75c9758acf248d3784.jpg?w=632&h=340"></a>
+            </li>
+            <li><a href="#"><img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/816a66edef10673b4768128b41804cae.jpg?w=632&h=340"></a>
+            </li>
+        </ul>
+    </div>
+    <script src="index.js"></script>
+</body>
+
+</html>
